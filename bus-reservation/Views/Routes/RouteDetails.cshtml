@@ -1,0 +1,48 @@
+﻿@model IEnumerable<bus_reservation.Models.Route>
+
+@{
+    ViewData["Title"] = "RouteDetails";
+    Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+<div class="table-container" style="width: 80%; margin-left: auto; margin-right: 0;">
+<h1>RouteDetails</h1>
+
+<p>
+    <a asp-action="AddRoute" asp-controller="Admin"> Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RouteName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartingPlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationPlace)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RouteName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingPlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestinationPlace)
+            </td>
+            <td>
+                <a asp-action="RouteEdit" asp-controller="Admin" asp-route-id="@item.RouteId">Edit</a> /
+                        <a asp-action="DeleteRoute" asp-controller="Admin" asp-route-id="@item.RouteId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

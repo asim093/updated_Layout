@@ -1,0 +1,45 @@
+﻿@model IEnumerable<bus_reservation.Models.Bus>
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+<div class="table-container" style="width: 80%; margin-left: auto; margin-right: 0;">
+    <h1>Bus List</h1>
+
+<p>
+    <a asp-action="Addbus" asp-controller="Admin">Create New Bus</a>
+</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Bus Number</th>
+                <th>Route</th>
+                <th>Total Seats</th>
+                <th>Available Seats</th>
+                <th>Bus Type</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.BusNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Route.RouteName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalSeats)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AvailableSeats)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BusType.BusTypeName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DepartureTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ArrivalTime)</td>
+                    <td>    
+                        <a asp-action="EditBus" asp-controller="Admin" asp-route-id="@item.BusId">Edit</a> |
+                        <a asp-action="DeleteBus" asp-controller="Admin" asp-route-id="@item.BusId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
